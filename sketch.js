@@ -19,7 +19,6 @@ function setup() {
 	canvas.style('z-index', '-1');
 
 	next = select('#next');
-	next.position(windowWidth / 2, 5);
 	next.style('font-size', '1.5em');
 	setInterval(changeColor, 500);
 
@@ -57,8 +56,14 @@ function setup() {
 	/*** End: Packing Algorithm *******************/
 
 	merkels = selectAll('.merkel');
-	for (let i = 0; i < merkels.length; i++) {
-		merkels[i].position((windowWidth / 3 + ((i / 2) * windowWidth) / 3), windowHeight / 3);
+	if (windowWidth > windowHeight) {
+		for (let i = 0; i < merkels.length; i++) {
+			merkels[i].position((windowWidth / 3 + ((i / 2) * windowWidth) / 3), windowHeight / 3);
+		}
+	} else {
+		for (let i = 0; i < merkels.length; i++) {
+			merkels[i].position(windowWidth / 3, 50 + (0.6 * i * windowHeight) / 3);
+		}
 	}
 
 	setInterval(showHideMerkel0, 500);
